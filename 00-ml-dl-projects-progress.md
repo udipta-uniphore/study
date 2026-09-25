@@ -63,10 +63,44 @@
 - [ ] Tiny diffusion model — forward/reverse process from scratch
   - **Dataset:** 2D toy distribution (e.g. a Swiss roll or Gaussian mixture) for the from-scratch math; CIFAR-10 as the standard image-scale follow-up (used in the original DDPM paper)
 
+## Phase 7: Language Models (builds on Bishop DL Ch. 12 Transformers)
+- [ ] Byte-pair encoding (BPE) tokenizer from scratch
+  - **Dataset:** Tiny Shakespeare (reuse from Phase 5) — small enough to inspect the learned merges by hand
+- [ ] Train a tiny GPT-style LM from scratch (nanoGPT-style, char or word level)
+  - **Dataset:** Tiny Shakespeare — the exact toy corpus Karpathy's nanoGPT uses for this exercise
+- [ ] Evaluate a small pretrained LM's perplexity
+  - **Dataset:** WikiText-2 (`datasets.load_dataset("wikitext", "wikitext-2-raw-v1")`) — the standard small benchmark for LM perplexity comparisons
+- [ ] Fine-tune a small pretrained LLM (e.g. GPT-2 small) end-to-end
+  - **Dataset:** Alpaca instruction dataset (52K examples) — the standard small instruction-tuning set
+- [ ] Parameter-efficient fine-tuning experiment (LoRA) on the same model/task
+  - **Dataset:** Same Alpaca subset — compare full fine-tune vs. LoRA on cost and quality
+
+## Phase 8: Retrieval-Augmented Generation (RAG)
+- [ ] Embedding + cosine-similarity retrieval from scratch (numpy, no vector DB)
+  - **Dataset:** SQuAD (`datasets.load_dataset("squad")`) — question/passage pairs, the standard QA/retrieval benchmark
+- [ ] Swap in a real vector DB (FAISS or Chroma) for the same retrieval task
+  - **Dataset:** Same SQuAD passages, to directly compare against the from-scratch version
+- [ ] Full RAG pipeline: retrieve top-k passages, feed to an LLM, generate an answer
+  - **Dataset:** SQuAD — generated answers can be checked directly against ground-truth answers
+- [ ] Chunking strategy experiment (chunk size/overlap vs. retrieval quality)
+  - **Dataset:** A longer-document set, e.g. a Wikipedia articles subset — chunking matters more on long documents than SQuAD's short passages
+- [ ] Retrieval evaluation (precision@k, recall@k) vs. end-to-end answer accuracy
+  - **Dataset:** Natural Questions (NQ) subset — the standard benchmark for scoring retrieval quality separately from generation quality
+
+## Phase 9: Agents
+- [ ] Basic tool-calling agent (calculator + one lookup tool)
+  - **Dataset:** GSM8K (grade-school math word problems) — the standard benchmark for testing whether tool use improves reasoning accuracy
+- [ ] ReAct-style agent (interleaved thought/action/observation loop)
+  - **Dataset:** HotpotQA (multi-hop QA) — the dataset the original ReAct paper used to demonstrate reasoning+retrieval agents
+- [ ] Memory-augmented conversational agent (persist facts across turns)
+  - **Dataset:** MultiWOZ (multi-turn dialogue) — the standard multi-turn dialogue benchmark, or a synthetic multi-session conversation if something lighter is preferred
+- [ ] Multi-agent collaboration toy (two agents debate/critique each other's answers)
+  - **Dataset:** Reuse GSM8K or HotpotQA — measure whether debate/self-critique improves accuracy over a single-agent baseline
+
 ---
 
 ## Study Sessions Log
-**2026-09-25:** Project plan scaffolded, tied to ESL and Bishop DL trackers. Added standard dataset per project.
+**2026-09-25:** Project plan scaffolded, tied to ESL and Bishop DL trackers. Added standard dataset per project. Added Phases 7–9 covering LLMs, RAG, and agents.
 
 ---
 
