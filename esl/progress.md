@@ -8,7 +8,7 @@
 - [ ] Motivating examples (spam, digit recognition, gene expression, prostate cancer)
 
 ## 2. Overview of Supervised Learning
-- [ ] Variable types and terminology
+- [x] Variable types and terminology
 - [ ] Least squares and nearest neighbors
 - [ ] Statistical decision theory (loss functions, EPE)
 - [ ] Bias-variance tradeoff
@@ -142,6 +142,6 @@
 ---
 
 ## Current Focus
-**Topic:** Not yet started
-**Status:** Tracker set up
-**Next:** Pick a starting chapter (recommend Ch. 2 — Overview of Supervised Learning, since Ch. 1 is mostly motivation)
+**Topic:** Chapter 2 — Overview of Supervised Learning
+**Status:** Notes created; ready to study
+**Next:** Work through sections 2.1–2.7; focus on bias-variance decomposition and understanding LS vs. KNN trade-off
