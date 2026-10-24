@@ -296,6 +296,37 @@ For $n = 1$ this is $\tfrac12\log(2\pi e\sigma^2)$.
 
 ---
 
+## 4c. Lagrange multipliers
+
+**Problem.** Maximize $f(x)$ subject to $g(x) = c$.
+
+**Idea.** Without the constraint, a maximum has $\nabla f = 0$. With the constraint, we only move along the constraint surface, so what matters is how $f$ changes along allowed directions.
+
+**Why the gradients line up.** Suppose $x^*$ is a constrained maximum and $\nabla g(x^*) \ne 0$. Take any curve $x(t)$ that stays on the constraint, $g(x(t)) = c$, with $x(0) = x^*$ and velocity $x'(0) = d$. Then:
+
+- Constraint: $\nabla g \cdot d = 0$. So $d$ is tangent to the surface, and $\nabla g$ is normal to it.
+- Maximum: $\frac{d}{dt}f(x(t))\big|_{t=0} = \nabla f\cdot d = 0$ for every allowed $d$.
+
+So $\nabla f$ is perpendicular to every tangent direction $d$, which means $\nabla f$ is perpendicular to the surface too. In a space where the normal directions are one-dimensional, that means $\nabla f$ is parallel to $\nabla g$:
+
+$$\nabla f(x^*) = \lambda\,\nabla g(x^*)$$
+
+for some number $\lambda$, the **Lagrange multiplier**.
+
+**The Lagrangian.** Define $\mathcal{L}(x,\lambda) = f(x) - \lambda\,(g(x) - c)$. Setting its partial derivatives to zero gives both conditions at once:
+
+- $\partial_x\mathcal{L} = 0$ gives $\nabla f = \lambda\nabla g$.
+- $\partial_\lambda\mathcal{L} = 0$ gives $g(x) = c$.
+
+**Example.** Maximize $f(x,y) = x + y$ on the circle $x^2 + y^2 = 1$. Here $g = x^2+y^2$, $\nabla f = (1,1)$, $\nabla g = (2x, 2y)$. Then $(1,1) = \lambda(2x,2y)$, so $x = y$. With $x^2+y^2 = 1$, $x=y=\tfrac{1}{\sqrt2}$, giving $f = \sqrt2$. The minimum is $-\sqrt2$ at $x=y=-\tfrac{1}{\sqrt2}$.
+
+**Caveats.**
+- The method finds candidates. Compare values at all of them to pick the maximum.
+- It needs $\nabla g \ne 0$ at the point. Otherwise the tangent argument fails.
+- The multiplier $\lambda$ measures how much the optimum changes if the constraint constant $c$ changes. For the entropy problem in section 4b, the constraints fix the moments, and the multipliers come out as the terms in the exponent of the Gaussian.
+
+---
+
 ## 5. Multivariate Gaussian
 
 $$f(x) = \frac{1}{\sqrt{(2\pi)^n\det\Sigma}}\exp\!\Big(-\tfrac12 (x-\mu)^T\Sigma^{-1}(x-\mu)\Big)$$
